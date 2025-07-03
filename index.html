@@ -5,7 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Client Intake Form</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: #121212;
+      font-family: 'Trebuchet MS', sans-serif;
+      color: #e0e0e0;
+    }
+    .form-container {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      margin: 50px auto;
+      max-width: 700px;
+    }
+    h2.form-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #26bfca;
+      text-align: center;
+    }
+    h4.form-subtitle {
+      font-size: 20px;
+      font-weight: 400;
+      color: #ccc;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .formbuilder-required {
+      color: red;
+    }
+    .form-control {
+      background-color: #2c2c2c;
+      color: #e0e0e0;
+      border: 1px solid #444;
+    }
+    .form-control:focus {
+      background-color: #2c2c2c;
+      color: #fff;
+      border-color: #26bfca;
+      box-shadow: 0 0 0 0.2rem rgba(38, 191, 202, 0.25);
+    }
+    .btn-primary {
+      background-color: #26bfca;
+      border-color: #26bfca;
+    }
+    .btn-primary:hover {
+      background-color: #1baab5;
+      border-color: #1baab5;
+    }
+  </style>
 </head>
 <body>
 
@@ -101,6 +150,29 @@
     </form>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const weightInput = document.getElementById('weight');
+    const heightInput = document.getElementById('height');
+    const bmiInput = document.getElementById('bmi');
+
+    function calculateBMI() {
+      const weight = parseFloat(weightInput.value);
+      const height = parseFloat(heightInput.value) / 100; // cm to m
+      if (weight && height) {
+        const bmi = (weight / (height * height)).toFixed(1);
+        bmiInput.value = bmi;
+      }
+    }
+
+    weightInput.addEventListener('input', calculateBMI);
+    heightInput.addEventListener('input', calculateBMI);
+
+    document.getElementById('client-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Form submitted successfully!');
+      // Add WhatsApp/email integration logic here
+    });
+  </script>
+
 </body>
 </html>
