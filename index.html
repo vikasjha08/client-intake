@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Intake Form</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Client Intake Form</h1>
+    <form id="intakeForm">
+      <label>Name:<input type="text" name="name" required /></label>
+      <label>Gender:<input type="text" name="gender" required /></label>
+      <label>Age:<input type="number" name="age" required /></label>
+
+      <h2>Physical Assessment</h2>
+      <label>Weight (kg):<input type="number" id="weight" required /></label>
+      <label>Height (cm):<input type="number" id="height" required /></label>
+      <label>BMI:<input type="text" id="bmi" readonly /></label>
+
+      <button type="button" onclick="calculateBMI()">Auto-calculate BMI</button>
+
+      <h2>Goal</h2>
+      <label><input type="radio" name="goal" value="Fat Loss" required /> Fat Loss</label>
+      <label><input type="radio" name="goal" value="Muscle Gain" /> Muscle Gain</label>
+      <label><input type="radio" name="goal" value="Overall Health" /> Overall Health</label>
+
+      <h2>Meal 1</h2>
+      <textarea name="meal1" placeholder="Describe what you usually eat"></textarea>
+
+      <h2>Expectations</h2>
+      <textarea name="expectations" placeholder="Your expectations from the program"></textarea>
+
+      <h2>Comments</h2>
+      <textarea name="comments" placeholder="Any additional comments"></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <button onclick="shareViaWhatsApp()">Share on WhatsApp</button>
+    <button onclick="downloadPDF()">Download as PDF</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
