@@ -1,47 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Client Intake Form</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #121212;
+      font-family: 'Trebuchet MS', sans-serif;
+      color: #e0e0e0;
+    }
+    .form-container {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      margin: 50px auto;
+      max-width: 700px;
+    }
+    h2.form-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #26bfca;
+      text-align: center;
+    }
+    h4.form-subtitle {
+      font-size: 20px;
+      font-weight: 400;
+      color: #ccc;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .formbuilder-required {
+      color: red;
+    }
+    .form-control {
+      background-color: #2c2c2c;
+      color: #e0e0e0;
+      border: 1px solid #444;
+    }
+    .form-control:focus {
+      background-color: #2c2c2c;
+      color: #fff;
+      border-color: #26bfca;
+      box-shadow: 0 0 0 0.2rem rgba(38, 191, 202, 0.25);
+    }
+    .btn-primary {
+      background-color: #26bfca;
+      border-color: #26bfca;
+    }
+    .btn-primary:hover {
+      background-color: #1baab5;
+      border-color: #1baab5;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Client Intake Form</h1>
-    <form id="intakeForm">
-      <label>Name:<input type="text" name="name" required /></label>
-      <label>Gender:<input type="text" name="gender" required /></label>
-      <label>Age:<input type="number" name="age" required /></label>
 
-      <h2>Physical Assessment</h2>
-      <label>Weight (kg):<input type="number" id="weight" required /></label>
-      <label>Height (cm):<input type="number" id="height" required /></label>
-      <label>BMI:<input type="text" id="bmi" readonly /></label>
+  <div class="container form-container">
+    <h2 class="form-title">CLIENT INTAKE FORM</h2>
+    <h4 class="form-subtitle">HEALTH QUESTIONNAIRE AND FITNESS ASSESSMENT</h4>
 
-      <button type="button" onclick="calculateBMI()">Auto-calculate BMI</button>
+    <form id="client-form">
+      <div class="form-group">
+        <label for="name">Name <span class="formbuilder-required">*</span></label>
+        <input type="text" class="form-control" id="name" required>
+      </div>
 
-      <h2>Goal</h2>
-      <label><input type="radio" name="goal" value="Fat Loss" required /> Fat Loss</label>
-      <label><input type="radio" name="goal" value="Muscle Gain" /> Muscle Gain</label>
-      <label><input type="radio" name="goal" value="Overall Health" /> Overall Health</label>
+      <div class="form-group">
+        <label for="gender">Gender <span class="formbuilder-required">*</span></label>
+        <select class="form-control" id="gender" required>
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Transgender</option>
+        </select>
+      </div>
 
-      <h2>Meal 1</h2>
-      <textarea name="meal1" placeholder="Describe what you usually eat"></textarea>
+      <div class="form-group">
+        <label for="dob">Date of Birth <span class="formbuilder-required">*</span></label>
+        <input type="date" class="form-control" id="dob" required>
+      </div>
 
-      <h2>Expectations</h2>
-      <textarea name="expectations" placeholder="Your expectations from the program"></textarea>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="weight">Body Weight (kg) <span class="formbuilder-required">*</span></label>
+          <input type="number" class="form-control" id="weight" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="height">Height (cm) <span class="formbuilder-required">*</span></label>
+          <input type="number" class="form-control" id="height" required>
+        </div>
+      </div>
 
-      <h2>Comments</h2>
-      <textarea name="comments" placeholder="Any additional comments"></textarea>
+      <div class="form-group">
+        <label for="bmi">BMI <span class="formbuilder-required">*</span></label>
+        <input type="text" class="form-control" id="bmi" readonly required>
+      </div>
 
-      <button type="submit">Submit</button>
+      <div class="form-group">
+        <label for="bodyFat">Body Fat (%) <span class="formbuilder-required">*</span></label>
+        <input type="number" class="form-control" id="bodyFat" required>
+      </div>
+
+      <div class="form-group">
+        <label for="waist">Waist Circumference (cm) <span class="formbuilder-required">*</span></label>
+        <input type="number" class="form-control" id="waist" required>
+      </div>
+
+      <div class="form-group">
+        <label for="goal">Goal <span class="formbuilder-required">*</span></label>
+        <select class="form-control" id="goal" required>
+          <option value="">Select</option>
+          <option>Fat Loss</option>
+          <option>Muscle Gain</option>
+          <option>Overall Health</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="comments">Comments (if any)</label>
+        <textarea class="form-control" id="comments"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="restHR">Resting Heart Rate <span class="formbuilder-required">*</span></label>
+          <input type="number" class="form-control" id="restHR" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="restBP">Resting Blood Pressure <span class="formbuilder-required">*</span></label>
+          <input type="text" class="form-control" id="restBP" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="activity">Activity Levels <span class="formbuilder-required">*</span></label>
+        <select class="form-control" id="activity" required>
+          <option value="">Select</option>
+          <option>Sedentary</option>
+          <option>Lightly Active</option>
+          <option>Moderately Active</option>
+          <option>Active</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
     </form>
-
-    <button onclick="shareViaWhatsApp()">Share on WhatsApp</button>
-    <button onclick="downloadPDF()">Download as PDF</button>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const weightInput = document.getElementById('weight');
+    const heightInput = document.getElementById('height');
+    const bmiInput = document.getElementById('bmi');
+
+    function calculateBMI() {
+      const weight = parseFloat(weightInput.value);
+      const height = parseFloat(heightInput.value) / 100; // cm to m
+      if (weight && height) {
+        const bmi = (weight / (height * height)).toFixed(1);
+        bmiInput.value = bmi;
+      }
+    }
+
+    weightInput.addEventListener('input', calculateBMI);
+    heightInput.addEventListener('input', calculateBMI);
+
+    document.getElementById('client-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Form submitted successfully!');
+      // Add WhatsApp/email integration logic here
+    });
+  </script>
+
 </body>
 </html>
